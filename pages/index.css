@@ -2,202 +2,32 @@
 
 @import url(../vendor/fonts/fonts.css);
 
-.body {
-    background-color: black;
-    color: white;
-    margin: 0 auto;
-    width: 100%;
-    font-family: "Inter", "Arial", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-}
+@import url(../blocks/body/body.css);
+@import url(../blocks/root/root.css);
 
-.root {
-    min-width: 320px;
-    max-width: 1280px;
-    margin: 0 auto;
-}
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
 
-.header {
-    width: calc(100% - 200px*2);
-    height: 74px;
-    margin: 45px auto 40px auto;
-    border-bottom: 1px solid rgba(84,84,84,.7);
-}
+@import url(../blocks/main/main.css);
 
-.header__logo {
-    width: 142px;
-    height: 33px;
-}
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__main/profile__main.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__container/profile__container.css);
+@import url(../blocks/profile/__name-container/profile__name-container.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__description/profile__description.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
 
-.main {
-    width: calc(100% - 200px*2);
-    margin: 0 auto;
-}
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__box/elements__box.css);
 
-.profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__info/element__info.css);
+@import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
 
-.profile__main {
-    display: flex;
-    align-items: center;
-}
-
-.profile__avatar {
-    padding: 0;
-    margin: 0 30px 0 0;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: rgba(196, 196, 196, 1);
-}
-
-.profile__container {
-    display: flex;
-    align-items: baseline;
-}
-
-
-.profile__name {
-    margin: 0 18px 16px 0;
-    padding: 0;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 42px;
-    line-height: 48px;
-
-}
-
-.profile__edit-button {
-    margin: 0;
-    padding: 0;
-    background-image: url("../images/bg-edit-button.svg");
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 1px solid #fff;
-    width: 24px;
-    height: 24px;
-    transition: .2s;
-
-}
-
-.profile__edit-button:hover{
-    cursor:pointer;
-    opacity:.6;
-}
-
-.profile__description {
-    margin: 0;
-    padding: 0;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-
-}
-
-.profile__add-button {
-    margin: 0;
-    padding: 0;
-    background-image: url("../images/bg-add-button.svg");
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 2px solid #FFFFFF;
-    border-radius: 2px;
-    width: 150px;
-    height: 50px;
-    transition: .2s;
-
-}
-
-.profile__add-button:hover{
-    cursor:pointer;
-    opacity:.6;
-}
-
-.elements {
-    margin: 51px auto 67px;
-    box-sizing: border-box;
-}
-
-.elements__box {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,282px);
-    column-gap: 17px;
-    row-gap: 20px;
-    justify-content: center;
-
-    box-sizing: border-box;
-
-}
-
-.element {
-    margin: 0;
-    padding: 0;
-    color: black;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.element__image {
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.element__info {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 21px;
-    padding-right: 15px;
-}
-
-.element__title {
-    margin: 0;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
-    padding-bottom: 31px;
-    padding-top: 25px;
-    text-align: left;
-
-}
-
-.element__like-button {
-    margin: 0;
-    padding: 0;
-    min-width: 22px;
-    height: 19px;
-    border: none;
-    background-image: url("../images/bg-like-button.svg");
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: .2s;
-}
-
-.element__like-button:hover{
-    cursor:pointer;
-    opacity:.5;
-}
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
