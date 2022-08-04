@@ -14,25 +14,24 @@ popupCloseButton.addEventListener('click', togglePopup);
 
 
 
+let formElement = document.querySelector('.popup__form');
+let nameInput = formElement.querySelector('.popup__input_name');
+let jobInput = formElement.querySelector('.popup__input_description');
 
 let name = document.querySelector('.profile__name');
 let job = document.querySelector('.profile__description');
 
-let inputName = document.querySelector('.popup__input_name');
-let inputJob = document.querySelector('.popup__input_description');
+nameInput.value = name.textContent;
+jobInput.value = job.textContent;
 
-let saveButton = document.querySelector('.popup__submit-button');
+function formSubmitHandler (evt) {
+    evt.preventDefault();
 
-inputName.value = name.textContent;
-inputJob.value = job.textContent;
+    name.textContent = nameInput.value;
+    job.textContent = jobInput.value;
 
-function saveChanges() {
-    name.textContent = inputName.value;
-    job.textContent = inputJob.value;
-
-    togglePopup()
+    togglePopup();
 }
 
-saveButton.addEventListener('click', saveChanges);
-
+formElement.addEventListener('submit', formSubmitHandler);
 

@@ -86,12 +86,12 @@
     <section class="popup">
         <div class="popup__container">
             <button class="popup__close-button" type="button" title="Закрыть редактирование профиля"></button>
-            <div class="popup__form">
+            <form class="popup__form">
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input class="popup__input popup__input_name" placeholder="Имя" type="text">
-                <input class="popup__input popup__input_description" placeholder="занятие" type="text">
-                <button class="popup__submit-button" title="Сохранить данные">Сохранить</button>
-            </div>
+                <input class="popup__input popup__input_name" placeholder="Имя" type="text" required>
+                <input class="popup__input popup__input_description" placeholder="занятие" type="text" required>
+                <button type="submit" class="popup__submit-button" title="Сохранить данные">Сохранить</button>
+            </form>
         </div>
     </section>
 
