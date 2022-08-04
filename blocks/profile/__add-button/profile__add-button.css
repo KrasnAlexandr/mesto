@@ -24,3 +24,9 @@
         margin-top: 33px;
     }
 }
+
+@media screen and (max-width: 680px){
+    .profile__add-button {
+        background-image: url(../../../images/bg-add-button-small.svg);
+    }
+}

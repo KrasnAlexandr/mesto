@@ -83,18 +83,18 @@
         </footer>
     </div>
 
-    <section class="popup">
+    <div class="popup">
         <div class="popup__container">
-            <button class="popup__close-button" type="button" title="Закрыть редактирование профиля"></button>
-            <form class="popup__form">
+            <button type="button" class="popup__close-button" title="Закрыть редактирование профиля"></button>
+            <form class="popup__form" name="edit-name" action="#">
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input class="popup__input popup__input_name" placeholder="Имя" type="text" required>
-                <input class="popup__input popup__input_description" placeholder="занятие" type="text" required>
+                <input class="popup__input popup__input_type_name" placeholder="Имя" type="text" name="username" minlength="2" maxlength="50" required>
+                <input class="popup__input popup__input_type_description" placeholder="занятие" type="text" name="job" minlength="2" maxlength="50" required>
                 <button type="submit" class="popup__submit-button" title="Сохранить данные">Сохранить</button>
             </form>
         </div>
-    </section>
+    </div>
 
-    <script src="index.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
