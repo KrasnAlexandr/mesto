@@ -10,27 +10,23 @@ let nameInput = formElement.querySelector('.popup__input_type_name');
 let jobInput = formElement.querySelector('.popup__input_type_description');
 
 
-
-
 function togglePopup() {
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
-
     popup.classList.toggle('popup_opened');
-}
 
+    if (popup.classList.contains('popup_opened')) {
+        nameInput.value = name.textContent;
+        jobInput.value = job.textContent;
+    }
+}
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
 
-    if (popup.classList.contains('popup_opened')) {
-        name.textContent = nameInput.value;
-        job.textContent = jobInput.value;
-    }
+    name.textContent = nameInput.value;
+    job.textContent = jobInput.value;
 
     togglePopup();
 }
-
 
 
 profileEditButton.addEventListener('click', togglePopup);
