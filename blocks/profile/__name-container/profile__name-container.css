@@ -1,5 +1,18 @@
 .profile__name-container {
-    display: flex;
+    display: grid;
     align-items: baseline;
     position: relative;
+    grid-template-columns: 1fr 24px;
+    column-gap: 19px;
+    row-gap: 8px;
+    margin-right: 15px;
+    grid-template-areas:"name button"
+                        "job job";
+}
+
+@media screen and (max-width: 680px) {
+    .profile__name-container {
+        grid-template-columns: 1fr 18px;
+        margin-right: 0;
+    }
 }

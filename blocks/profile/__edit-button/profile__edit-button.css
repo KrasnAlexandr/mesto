@@ -12,18 +12,14 @@
 
 }
 
-.profile__edit-button:hover{
+.profile__edit-button:hover {
     cursor:pointer;
     opacity:.6;
 }
 
-@media screen and (max-width: 680px){
+@media screen and (max-width: 680px) {
     .profile__edit-button {
         background-image: url(../../../images/bg-edit-button-small.svg);
-        position: absolute;
-        transform: translate(-50%, -50%);
-        right: -35px;
-        top: 20px;
         min-width: 18px;
         height: 18px;
     }
