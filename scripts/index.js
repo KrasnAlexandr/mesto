@@ -24,11 +24,9 @@ const elementsBox = document.querySelector('.elements__box'); // место по
 const templateElement = document.querySelector('#templateElement').content; // template под карточки (li)
 
 
-// ВСЕ КОНАСТАТЫ ЗУМ ПОПАПА
+// ВСЕ КОНАСТАТЫ ЗУМ ПОПАПА (открытие в функции addElement)
 const popupZoomImage = document.querySelector('#zoomImage'); // поиск попапа фото
 const popupCloseButtonZoomImage = popupZoomImage.querySelector('.popup__close-button'); // кнопка закрытия большой картинки
-const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img popupZoomImage
-const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // caption popupZoomImage
 
 
 // КАРТОЧКИ ИЗ КОРОБКИ
@@ -102,6 +100,8 @@ function addElement (card) {
         evt.target.parentElement.remove();
     }); // удаление
 
+    const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img popupZoomImage
+    const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // caption popupZoomImage
 
     element.querySelector('.element__image').addEventListener('click', function () {
         openPopup(popupZoomImage);
@@ -152,10 +152,6 @@ popupCloseButtonElement.addEventListener('click', function () {
 
 popupCloseButtonZoomImage.addEventListener('click', function () {
    closePopup(popupZoomImage)
-
-    imageSrcAndAlt.src = '';
-    imageSrcAndAlt.alt = '';
-    imageCaption.textContent = '';
 });  // крестик закрытия (большой картинки)
 
 
