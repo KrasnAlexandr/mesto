@@ -37,17 +37,6 @@ const popupCloseButtonZoomImage = popupZoomImage.querySelector('.popup__close-bu
 // Функция открытия попапов
 const openPopup = popup => popup.classList.add('popup_opened');
 
-// Функция открытия попапа профиля
-function openPopupProfile(popup) {
-    popup.classList.add('popup_opened');
-
-    if (popupEditProfile.classList.contains('popup_opened')) {
-        nameInput.value = name.textContent;
-        jobInput.value = job.textContent;
-    }
-}
-
-
 // Функция закрытия попапов
 const closePopup = popup => popup.classList.remove('popup_opened');
 
@@ -108,7 +97,12 @@ function submitElementForm (evt) {
 
 
 // КНОПКИ ОТКРЫТИЯ ПОПАПОВ
-profileEditButton.addEventListener('click',  () => openPopupProfile(popupEditProfile)); // открыть редактор профиля
+profileEditButton.addEventListener('click', function () {
+    openPopup(popupEditProfile);
+    nameInput.value = name.textContent;
+    jobInput.value = job.textContent;
+});  // открыть редактор профиля
+
 addElementButton.addEventListener('click', () => openPopup(popupAddElement)); // открыть добавление места
 
 // КНОПКИ ИЗМЕНЕНИЯ ДАННЫХ
