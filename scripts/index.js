@@ -100,8 +100,8 @@ function addElement (card) {
         evt.target.parentElement.remove();
     }); // удаление
 
-    const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img popupZoomImage
-    const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // caption popupZoomImage
+    const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img для src/alt
+    const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // img подпись
 
     element.querySelector('.element__image').addEventListener('click', function () {
         openPopup(popupZoomImage);
