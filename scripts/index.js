@@ -3,7 +3,7 @@ import { initialCards } from "./initialCards.js";
 
 
 // ВСЕ КОНСТАНТЫ ДЛЯ ПРОФИЛЯ
-const popupEditProfile = document.querySelector('.popup__edit-profile'); // поиск попапа профиля
+const popupEditProfile = document.querySelector('.popup_type_profile'); // поиск попапа профиля
 const profileEditButton = document.querySelector('.profile__edit-button'); // кнопка редактирования профиля (карандаш)
 const popupCloseButtonProfile = popupEditProfile.querySelector('.popup__close-button'); // кнопка закрытия редактирования профиля
 // Форма попапа (профиль)
@@ -16,7 +16,7 @@ const job = document.querySelector('.profile__description'); // html работ�
 
 
 // ВСЕ КОНАСТАНТЫ ДЛЯ ДОБАВЛЕНИЯ ЭЛЕМЕНТОВ (МЕСТА)
-const popupAddElement = document.querySelector('.popup__add-element') // поиск поапа добавления места
+const popupAddElement = document.querySelector('.popup_type_elements') // поиск поапа добавления места
 const addElementButton = document.querySelector('.profile__add-button'); // кнопка вызова попапа добавления элемента (плюсик)
 const popupCloseButtonElement = popupAddElement.querySelector('.popup__close-button'); // кнопка закрытия добавления места
 // Форма попапа (добавления элемента)
@@ -29,7 +29,7 @@ const templateElement = document.querySelector('#templateElement').content; // t
 
 
 // ВСЕ КОНАСТАТЫ ЗУМ ПОПАПА (открытие в функции addElement)
-const popupZoomImage = document.querySelector('.popup__zoom'); // поиск попапа фото
+const popupZoomImage = document.querySelector('.popup_type_zoom'); // поиск попапа фото
 const popupCloseButtonZoomImage = popupZoomImage.querySelector('.popup__close-button'); // кнопка закрытия большой картинки
 
 
