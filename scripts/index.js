@@ -99,6 +99,7 @@ function submitElementForm (evt) {
 // КНОПКИ ОТКРЫТИЯ ПОПАПОВ
 profileEditButton.addEventListener('click', function () {
     openPopup(popupEditProfile);
+
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
 });  // открыть редактор профиля
