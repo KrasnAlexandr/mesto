@@ -32,48 +32,17 @@
 
             <section class="elements">
                 <ul class="elements__box">
-                    <li class="element">
-                        <img class="element__image" src="images/element1.jpg" alt="фотография красочного места в России">
-                        <div class="element__info">
-                            <h2 class="element__title">Карачаевск</h2>
-                            <button type="button" class="element__like-button" title="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="images/element2.jpg" alt="фотография красочного места в России">
-                        <div class="element__info">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button type="button" class="element__like-button" title="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="images/element3.jpg" alt="фотография красочного места в России">
-                        <div class="element__info">
-                            <h2 class="element__title">Домбай</h2>
-                            <button type="button" class="element__like-button" title="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="images/element4.jpg" alt="фотография красочного места в России">
-                        <div class="element__info">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button type="button" class="element__like-button" title="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="images/element5.jpg" alt="фотография красочного места в России">
-                        <div class="element__info">
-                            <h2 class="element__title">Домбай</h2>
-                            <button type="button" class="element__like-button" title="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="images/element6.jpg" alt="фотография красочного места в России">
-                        <div class="element__info">
-                            <h2 class="element__title">Карачаево-Черкесия</h2>
-                            <button type="button" class="element__like-button" title="Like"></button>
-                        </div>
-                    </li>
+                    <!-- область под элементы (места) -->
+                    <template id="templateElement">
+                        <li class="element">
+                            <button type="button" class="element__trash-button" title="delete"></button>
+                            <img class="element__image">
+                            <div class="element__info">
+                                <h2 class="element__title"></h2>
+                                <button type="button" class="element__like-button" title="Like"></button>
+                            </div>
+                        </li>
+                    </template>
                 </ul>
             </section>
         </main>
@@ -83,15 +52,37 @@
         </footer>
     </div>
 
-    <div class="popup">
+    <div class="popup" id="editProfile">
         <div class="popup__container">
             <button type="button" class="popup__close-button" title="Закрыть редактирование профиля"></button>
-            <form class="popup__form" name="edit-name" action="#">
+            <form class="popup__form" name="editProfile" action="#">
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input class="popup__input popup__input_type_name" placeholder="Имя" type="text" name="username" minlength="2" maxlength="50" required>
-                <input class="popup__input popup__input_type_description" placeholder="занятие" type="text" name="job" minlength="2" maxlength="50" required>
+                <input class="popup__input popup__input_type_description" placeholder="занятие" type="text" name="description" minlength="2" maxlength="50" required>
                 <button type="submit" class="popup__submit-button" title="Сохранить данные">Сохранить</button>
             </form>
+        </div>
+    </div>
+
+    <div class="popup" id="addElement">
+        <div class="popup__container">
+            <button type="button" class="popup__close-button" title="Закрыть добавление нового места"></button>
+            <form class="popup__form" name="addElement" action="#">
+                <h3 class="popup__title">Новое место</h3>
+                <input class="popup__input popup__input_type_element" placeholder="Название" type="text" name="element" minlength="2" maxlength="50" required>
+                <input class="popup__input popup__input_type_url-element" placeholder="Ссылка на картинку" type="url" name="urlElement" minlength="2" maxlength="200" required>
+                <button type="submit" class="popup__submit-button" title="Сохранить данные">Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup" id="zoomImage">
+        <div class="popup__container-image">
+            <button type="button" class="popup__close-button" title="Закрыть увеличенное фото"></button>
+            <figure class="popup__figure">
+                <img class="popup__zoom-image">
+                <figcaption class="popup__figure-caption"></figcaption>
+            </figure>
         </div>
     </div>
 

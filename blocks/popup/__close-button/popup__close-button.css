@@ -11,10 +11,10 @@
     transition: .2s;
     border: none;
 
-    position: relative;
+    position: absolute;
     transform: translate(-50%, -50%);
-    top: -24px;
-    left: 454px;
+    top: calc(0% - 24px);
+    left: calc(100% + 24px);
 }
 
 .popup__close-button:hover{
@@ -26,6 +26,7 @@
     .popup__close-button {
         min-width: 20px;
         height: 20px;
-        left: calc(100% - 9px);
+        top: calc(0% - 26px);
+        left: 97%;
     }
 }

@@ -2,12 +2,15 @@
     width: 100%;
     min-width: 320px;
     min-height: 100vh;
-    display: none;
-    flex-direction: column;
+    display: flex;
     align-items: center;
     justify-content: center;
     color: black;
     background-color: rgba(0,0,0,.5);
     position: fixed;
     top: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.444s linear;
 }
