@@ -59,29 +59,34 @@ function createCard (card) {
     element.querySelector('.element__image').alt = card.name;
     element.querySelector('.element__title').textContent = card.name;
 
-    element.querySelector('.element__like-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like-button_type_active');
-    }) // лайк
+    addListener(element);
 
-    element.querySelector('.element__trash-button').addEventListener('click', function (evt) {
-        evt.target.parentElement.remove();
-    }) // удаление
+    return element;
+}
+
+// Функция добавления событий карточки
+function addListener (element) {
+    element.querySelector('.element__like-button').addEventListener('click', (evt) =>
+        evt.target.classList.toggle('element__like-button_type_active')); // лайк
+
+    element.querySelector('.element__trash-button').addEventListener('click', (evt) =>
+        evt.target.parentElement.remove()); // удаление
 
     const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img для src/alt
     const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // img подпись
 
-    element.querySelector('.element__image').addEventListener('click', function () {
+    element.querySelector('.element__image').addEventListener('click', () => {
         openPopup(popupZoomImage);
         imageSrcAndAlt.src = card.link;
         imageSrcAndAlt.alt = card.name;
         imageCaption.textContent = card.name;
     }) // увеличение фото (вызов поапа)
-
-    return element;
 }
 
 // Функция добавления карточки в ленту
-const addCard = (card, container = elementsBox) => container.prepend(card);
+function addCard (card, container = elementsBox) {
+    container.prepend(card);
+}
 
 // Функция добавления нового места (через попап)
 function submitElementForm (evt) {
