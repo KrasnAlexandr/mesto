@@ -59,13 +59,13 @@ function createCard (card) {
     element.querySelector('.element__image').alt = card.name;
     element.querySelector('.element__title').textContent = card.name;
 
-    addListener(element);
+    addListener(element, card);
 
     return element;
 }
 
 // Функция добавления событий карточки
-function addListener (element) {
+function addListener (element, card) {
     element.querySelector('.element__like-button').addEventListener('click', (evt) =>
         evt.target.classList.toggle('element__like-button_type_active')); // лайк
 
