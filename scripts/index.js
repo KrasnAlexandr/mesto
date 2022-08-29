@@ -28,8 +28,10 @@ const elementsBox = document.querySelector('.elements__box'); // место по
 const templateElement = document.querySelector('#templateElement').content; // template под карточки (li)
 
 
-// ВСЕ КОНАСТАТЫ ЗУМ ПОПАПА (открытие в функции addElement)
+// ВСЕ КОНАСТАТЫ ЗУМ ПОПАПА
 const popupZoomImage = document.querySelector('.popup_type_zoom'); // поиск попапа фото
+const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img для src/alt
+const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // img подпись
 const popupCloseButtonZoomImage = popupZoomImage.querySelector('.popup__close-button'); // кнопка закрытия большой картинки
 
 
@@ -59,28 +61,7 @@ function createCard (card) {
     element.querySelector('.element__image').alt = card.name;
     element.querySelector('.element__title').textContent = card.name;
 
-    addListener(element, card);
-
     return element;
-}
-
-// Функция добавления событий карточки
-function addListener (element, card) {
-    element.querySelector('.element__like-button').addEventListener('click', (evt) =>
-        evt.target.classList.toggle('element__like-button_type_active')); // лайк
-
-    element.querySelector('.element__trash-button').addEventListener('click', (evt) =>
-        evt.target.parentElement.remove()); // удаление
-
-    const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img для src/alt
-    const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // img подпись
-
-    element.querySelector('.element__image').addEventListener('click', () => {
-        openPopup(popupZoomImage);
-        imageSrcAndAlt.src = card.link;
-        imageSrcAndAlt.alt = card.name;
-        imageCaption.textContent = card.name;
-    }) // увеличение фото (вызов поапа)
 }
 
 // Функция добавления карточки в ленту
@@ -121,6 +102,22 @@ popupCloseButtonProfile.addEventListener('click',  () => closePopup(popupEditPro
 popupCloseButtonElement.addEventListener('click',  () => closePopup(popupAddElement)); // крестик закрытия (добавления элемента)
 popupCloseButtonZoomImage.addEventListener('click',  () => closePopup(popupZoomImage)); // крестик закрытия (большой картинки)
 
+elementsBox.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('element__like-button')) {
+        evt.target.classList.toggle('element__like-button_type_active');
+    }
+
+    if (evt.target.classList.contains('element__trash-button')) {
+        evt.target.parentElement.remove();
+    }
+
+    if (evt.target.classList.contains('element__image')) {
+        openPopup(popupZoomImage);
+        imageSrcAndAlt.src = evt.target.src;
+        imageSrcAndAlt.alt = evt.target.alt;
+        imageCaption.textContent = evt.target.alt;
+    }
+}); // слушатель карточки (лайк, удаление и зум фото)
 
 // ДОБАВЛЕНИЕ ВСЕХ КАРТОЧЕК ИЗ КОРОБКИ
 initialCards.forEach((card) => addCard(createCard(card)));
