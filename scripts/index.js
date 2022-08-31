@@ -54,7 +54,7 @@ const setKeyListenerEsc = evt => {
 const checkPopupOpened = popup => popup.classList.contains('popup_opened');
 
 // функция для добавления и удаления слушателя (добавляется при открытии попапа, удаляется при закрытии)
-const toggleEventForKey = () => {
+const toggleListenerForKey = () => {
     if (popupArray.some(checkPopupOpened)) {
         document.addEventListener('keydown', (evt) => setKeyListenerEsc(evt));
     } else {
@@ -65,13 +65,13 @@ const toggleEventForKey = () => {
 // функция открытия попапов
 const openPopup = popup => {
     popup.classList.add('popup_opened');
-    toggleEventForKey();
+    toggleListenerForKey();
 };
 
 // функция закрытия попапов
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
-    toggleEventForKey()
+    toggleListenerForKey()
 };
 
 // функция редактирования профиля
