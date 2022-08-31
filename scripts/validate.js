@@ -1,5 +1,5 @@
 // функция добавления подписи ошибки под инпутом
-const showInputError = (formElement, inputElement, errorMessage, params) => {
+const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.add('popup__input_type_error');
@@ -8,7 +8,7 @@ const showInputError = (formElement, inputElement, errorMessage, params) => {
 };
 
 // фукнция скрытия подписи ошибки под инпутом
-const hideInputError = (formElement, inputElement, params) => {
+const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.remove('popup__input_type_error');
@@ -17,7 +17,7 @@ const hideInputError = (formElement, inputElement, params) => {
 };
 
 
-// функция проверки условий
+// функция проверки инпутов
 const hasInvalidInput = inputList => inputList.some((inputElement) => !inputElement.validity.valid);
 
 // функция активации и деактивации кнопки
@@ -35,7 +35,7 @@ const toggleButtonState = (inputList, buttonElement, params) => {
 // функция проверки на валидность
 const isValid = (formElement, inputElement, params) => {
     if (!inputElement.validity.valid) {
-        showInputError(formElement ,inputElement, inputElement.validationMessage, params);
+        showInputError(formElement ,inputElement, inputElement.validationMessage);
     } else {
         hideInputError(formElement, inputElement, params);
     }
