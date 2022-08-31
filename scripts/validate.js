@@ -33,11 +33,11 @@ const toggleButtonState = (inputList, buttonElement, params) => {
 
 
 // функция проверки на валидность
-const isValid = (formElement, inputElement, params) => {
+const isValid = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
         showInputError(formElement ,inputElement, inputElement.validationMessage);
     } else {
-        hideInputError(formElement, inputElement, params);
+        hideInputError(formElement, inputElement);
     }
 };
 
