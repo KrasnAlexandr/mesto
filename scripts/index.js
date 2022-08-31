@@ -92,9 +92,7 @@ const createCard = (card) => {
 };
 
 // Функция добавления карточки в ленту
-const addCard = (card, container = elementsBox) => {
-    container.prepend(card);
-};
+const addCard = (card, container = elementsBox) => container.prepend(card);
 
 // Функция добавления нового места (через попап)
 const submitElementForm = () => addCard(createCard({name: elementInput.value, link: urlElementInput.value}));
@@ -102,10 +100,8 @@ const submitElementForm = () => addCard(createCard({name: elementInput.value, li
 // Функция закрытия по клику оверлея, для всех попапов
 const setPopupOverlayListener = array =>{
     array.forEach((popup) => {
-        popup.addEventListener('click', (evt) => {
-            closePopup(evt.target);
+        popup.addEventListener('click', (evt) => closePopup(evt.target));
         });
-    });
 };
 
 // КНОПКИ ОТКРЫТИЯ ПОПАПОВ
