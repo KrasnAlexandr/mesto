@@ -62,14 +62,13 @@ const submitProfileForm = () => {
     job.textContent = jobInput.value;
 };
 
-
 // фукнция добавления интерактива карточки (слушатель карточки: лайк, удаление и зум фото)
-const addListenerForCard = (element, card, elementImage) => {
+const addListenersForCard = (element, card, elementImage) => {
     element.querySelector('.element__like-button').addEventListener('click', (evt) =>
         evt.target.classList.toggle('element__like-button_type_active')); // лайк
 
     element.querySelector('.element__trash-button').addEventListener('click', (evt) =>
-        evt.target.parentElement.remove()); // удаление
+        evt.target.closest('li').remove()); // удаление
 
     elementImage.addEventListener('click', () => {
         openPopup(popupZoomImage);
@@ -84,12 +83,12 @@ const createCard = (card) => {
     const element = templateElement.cloneNode(true);
 
     const elementImage = element.querySelector('.element__image');
-
     elementImage.src = card.link;
     elementImage.alt = card.name;
+
     element.querySelector('.element__title').textContent = card.name;
 
-    addListenerForCard(element, card, elementImage)
+    addListenersForCard(element, card, elementImage)
 
     return element;
 };
