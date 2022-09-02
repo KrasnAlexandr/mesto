@@ -141,8 +141,11 @@ addElementButton.addEventListener('click', () => openPopup(popupAddElement)); //
 
 
 // ФОРМЫ РАБОТЫ С ДАННЫМИ
-formProfile.addEventListener('submit', () => {
+formProfile.addEventListener('submit', (evt) => {
     submitProfileForm();
+
+    evt.submitter.classList.add('popup__submit-button_type_disabled');
+    evt.submitter.setAttribute('disabled', 'true');
 
     closePopup(popupEditProfile);
 }); // сохранить изменения в редактировании профиля и закрыть попап (если сделать сброс инпутов, после открытия и закрытия, сразу горит красным, в таком случае чтобы редактировать чтото одно, то надо менять и второе)
@@ -151,8 +154,10 @@ formProfile.addEventListener('submit', () => {
 cardForm.addEventListener('submit', (evt) => {
     submitCardForm(evt);
 
-    cardForm.reset();
+    evt.target.reset()
 
+    evt.submitter.classList.add('popup__submit-button_type_disabled');
+    evt.submitter.setAttribute('disabled', 'true');
 
     closePopup(popupAddElement);
 }); // добавить новый элемент (место), сбросить форму и закрыть попап
