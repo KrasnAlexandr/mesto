@@ -3,10 +3,9 @@ import { initialCards } from "./initialCards.js";
 
 
 // ВСЕ КОНСТАНТЫ ДЛЯ ПРОФИЛЯ
-const popupArray = Array.from(document.querySelectorAll(".popup")); // массив всех попапов
+const popups = document.querySelectorAll(".popup"); // массив всех попапов
 const popupEditProfile = document.querySelector('.popup_type_profile'); // поиск попапа профиля
 const profileEditButton = document.querySelector('.profile__edit-button'); // кнопка отркытия редактирования профиля (карандаш)
-const popupCloseButtonProfile = popupEditProfile.querySelector('.popup__close-button'); // кнопка закрытия редактирования профиля
 
 // Форма попапа (профиль)
 const formProfile = document.forms.formProfile; // popupEditProfile.querySelector('.popup__form'); // форма редактирования профиля
@@ -20,7 +19,6 @@ const job = document.querySelector('.profile__description'); // html работ�
 // ВСЕ КОНАСТАНТЫ ДЛЯ ДОБАВЛЕНИЯ ЭЛЕМЕНТОВ (МЕСТА)
 const popupAddElement = document.querySelector('.popup_type_elements'); // поиск поапа добавления места
 const addElementButton = document.querySelector('.profile__add-button'); // кнопка открытия попапа добавления элемента (плюсик)
-const popupCloseButtonElement = popupAddElement.querySelector('.popup__close-button'); // кнопка закрытия добавления места
 
 // Форма попапа (добавления элемента)
 const cardForm = document.forms.cardForm; // popupAddElement.querySelector('.popup__form'); // форма добавления элемента (место)
@@ -35,7 +33,6 @@ const templateElement = document.querySelector('#templateElement').content; // t
 const popupZoomImage = document.querySelector('.popup_type_zoom'); // поиск попапа фото
 const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image'); // img для src/alt
 const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // img подпись
-const popupCloseButtonZoomImage = popupZoomImage.querySelector('.popup__close-button'); // кнопка закрытия большой картинки
 
 
 // ФУНКЦИИ
@@ -117,12 +114,19 @@ const addCard = (card, container = elementsBox) => container.prepend(card);
 // Функция добавления нового места (через попап)
 const submitCardForm = () => addCard(createCard({name: elementInput.value, link: urlElementInput.value}));
 
-// Функция закрытия по клику оверлея, для всех попапов
-const setPopupOverlayListener = array =>{
-    array.forEach((popup) => {
-        popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
-        });
-};
+// Функция закрытия по клику оверлея или кнопки (крестика)
+const setPopupOverlayListener = popups => {
+    popups.forEach((popup) => {
+        popup.addEventListener('mousedown', (evt) => {
+            if (evt.target.classList.contains('popup_opened')) {
+                closePopup(popup)
+            }
+            if (evt.target.classList.contains('popup__close-button')) {
+                closePopup(popup)
+            }
+        })
+    })
+}
 
 
 // КНОПКИ ОТКРЫТИЯ ПОПАПОВ
@@ -154,17 +158,9 @@ cardForm.addEventListener('submit', (evt) => {
 }); // добавить новый элемент (место), сбросить форму и закрыть попап
 
 
-// КНОПКИ ЗАКРЫТИЯ ПОПАПОВ
-popupCloseButtonProfile.addEventListener('mousedown',  () => closePopup(popupEditProfile)); // крестик закрытия (профиль)
-
-popupCloseButtonElement.addEventListener('mousedown',  () => closePopup(popupAddElement)); // крестик закрытия (добавления элемента)
-
-popupCloseButtonZoomImage.addEventListener('mousedown',  () => closePopup(popupZoomImage)); // крестик закрытия (большой картинки)
-
-
 // добавления всех карточке из коробки
 initialCards.forEach((card) => addCard(createCard(card)));
-// добавления закрытия по клику оверлея для всех попапов
-setPopupOverlayListener(popupArray);
+// добавления закрытия по клику оверлея или кнопки (крестика) для всех попапов
+setPopupOverlayListener(popups);
 
 
