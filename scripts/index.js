@@ -36,20 +36,6 @@ const imageCaption = popupZoomImage.querySelector('.popup__figure-caption'); // 
 
 
 // ФУНКЦИИ
-
-
-
-// СРЕДА РАЗРАБОТКИ
-
-
-
-
-
-
-
-//КОНЕЦ СРЕДЫ
-
-
 // функция закрытия по Escape
 function closeByEscape(evt) {
     if (evt.key === 'Escape') {
@@ -158,9 +144,10 @@ cardForm.addEventListener('submit', (evt) => {
 
     evt.submitter.classList.add('popup__submit-button_type_disabled');
     evt.submitter.setAttribute('disabled', 'true');
+    //спасибо за подробное и поучительное ревью
 
     closePopup(popupAddElement);
-}); // добавить новый элемент (место), сбросить форму и закрыть попап
+}); // добавить новый элемент (место), сбросить форму и кнопку, закрыть попап
 
 
 // добавления всех карточке из коробки
