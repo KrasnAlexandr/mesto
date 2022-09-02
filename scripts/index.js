@@ -39,39 +39,38 @@ const popupCloseButtonZoomImage = popupZoomImage.querySelector('.popup__close-bu
 
 
 // ФУНКЦИИ
-// фукнция для слушателя (нажатие escape)
-const setKeyListenerEsc = evt => {
+
+
+
+// СРЕДА РАЗРАБОТКИ
+
+
+
+
+
+
+
+//КОНЕЦ СРЕДЫ
+
+
+// функция закрытия по Escape
+function closeByEscape(evt) {
     if (evt.key === 'Escape') {
-        popupArray.forEach((popup) => {
-            if (popup.classList.contains('popup_opened')) {
-                closePopup(popup)
-            }
-        })
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
     }
-};
-
-// фукнция проверки классов попапа
-const checkPopupOpened = popup => popup.classList.contains('popup_opened');
-
-// функция для добавления и удаления слушателя (добавляется при открытии попапа, удаляется при закрытии)
-const toggleListenerForKey = () => {
-    if (popupArray.some(checkPopupOpened)) {
-        document.addEventListener('keydown', (evt) => setKeyListenerEsc(evt));
-    } else {
-        document.removeEventListener('keydown', (evt) => setKeyListenerEsc(evt));
-    }
-};
+}
 
 // функция открытия попапов
 const openPopup = popup => {
     popup.classList.add('popup_opened');
-    toggleListenerForKey();
+    document.addEventListener('keydown', closeByEscape);
 };
 
 // функция закрытия попапов
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
-    toggleListenerForKey()
+    document.removeEventListener('keydown', closeByEscape);
 };
 
 // функция редактирования профиля
@@ -116,7 +115,7 @@ const createCard = (card) => {
 const addCard = (card, container = elementsBox) => container.prepend(card);
 
 // Функция добавления нового места (через попап)
-const submitElementForm = () => addCard(createCard({name: elementInput.value, link: urlElementInput.value}));
+const submitCardForm = () => addCard(createCard({name: elementInput.value, link: urlElementInput.value}));
 
 // Функция закрытия по клику оверлея, для всех попапов
 const setPopupOverlayListener = array =>{
@@ -146,15 +145,13 @@ formProfile.addEventListener('submit', () => {
 
 
 cardForm.addEventListener('submit', (evt) => {
-    submitElementForm(evt);
+    submitCardForm(evt);
 
     cardForm.reset();
 
+
     closePopup(popupAddElement);
 }); // добавить новый элемент (место), сбросить форму и закрыть попап
-
-
-
 
 
 // КНОПКИ ЗАКРЫТИЯ ПОПАПОВ
