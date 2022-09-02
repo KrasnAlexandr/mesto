@@ -1,19 +1,19 @@
 // функция добавления подписи ошибки под инпутом
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, params) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-    inputElement.classList.add('popup__input_type_error');
+    inputElement.classList.add(params.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__error_type_active');
+    errorElement.classList.add(params.errorClass);
 };
 
 // фукнция скрытия подписи ошибки под инпутом
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, params) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-    inputElement.classList.remove('popup__input_type_error');
+    inputElement.classList.remove(params.inputErrorClass);
     errorElement.textContent = '';
-    errorElement.classList.remove('popup__error_type_active');
+    errorElement.classList.remove(params.errorClass);
 };
 
 
@@ -33,11 +33,11 @@ const toggleButtonState = (inputList, buttonElement, params) => {
 
 
 // функция проверки на валидность
-const isValid = (formElement, inputElement) => {
+const isValid = (formElement, inputElement, params) => {
     if (!inputElement.validity.valid) {
-        showInputError(formElement ,inputElement, inputElement.validationMessage);
+        showInputError(formElement ,inputElement, inputElement.validationMessage, params);
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, params);
     }
 };
 
@@ -51,7 +51,7 @@ const setEventListeners = (formElement, params) => {
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-            isValid(formElement, inputElement);
+            isValid(formElement, inputElement, params);
 
             toggleButtonState(inputList, buttonElement, params);
         });

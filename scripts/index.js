@@ -23,9 +23,9 @@ const addElementButton = document.querySelector('.profile__add-button'); // кн
 const popupCloseButtonElement = popupAddElement.querySelector('.popup__close-button'); // кнопка закрытия добавления места
 
 // Форма попапа (добавления элемента)
-const formElement = document.forms.formElement; // popupAddElement.querySelector('.popup__form'); // форма добавления элемента (место)
-const elementInput = formElement.elements.element; // formElement.querySelector('.popup__input_type_element'); // инпут название элемента (добавление места)
-const urlElementInput = formElement.elements.urlElement; // formElement.querySelector('.popup__input_type_url-element'); // инпут url картинки элемента (добавление картинки места)
+const cardForm = document.forms.cardForm; // popupAddElement.querySelector('.popup__form'); // форма добавления элемента (место)
+const elementInput = cardForm.elements.element; // cardForm.querySelector('.popup__input_type_element'); // инпут название элемента (добавление места)
+const urlElementInput = cardForm.elements.urlElement; // cardForm.querySelector('.popup__input_type_url-element'); // инпут url картинки элемента (добавление картинки места)
 
 // html элементы
 const elementsBox = document.querySelector('.elements__box'); // место под карточки (ul)
@@ -80,13 +80,34 @@ const submitProfileForm = () => {
     job.textContent = jobInput.value;
 };
 
+
+// фукнция добавления интерактива карточки (слушатель карточки: лайк, удаление и зум фото)
+const addListenerForCard = (element, card, elementImage) => {
+    element.querySelector('.element__like-button').addEventListener('click', (evt) =>
+        evt.target.classList.toggle('element__like-button_type_active')); // лайк
+
+    element.querySelector('.element__trash-button').addEventListener('click', (evt) =>
+        evt.target.parentElement.remove()); // удаление
+
+    elementImage.addEventListener('click', () => {
+        openPopup(popupZoomImage);
+        imageSrcAndAlt.src = card.link;
+        imageSrcAndAlt.alt = card.name;
+        imageCaption.textContent = card.name;
+    }) // увеличение фото (вызов поапа)
+}
+
 // функция рендеринга карточки
 const createCard = (card) => {
     const element = templateElement.cloneNode(true);
 
-    element.querySelector('.element__image').src = card.link;
-    element.querySelector('.element__image').alt = card.name;
+    const elementImage = element.querySelector('.element__image');
+
+    elementImage.src = card.link;
+    elementImage.alt = card.name;
     element.querySelector('.element__title').textContent = card.name;
+
+    addListenerForCard(element, card, elementImage)
 
     return element;
 };
@@ -100,9 +121,10 @@ const submitElementForm = () => addCard(createCard({name: elementInput.value, li
 // Функция закрытия по клику оверлея, для всех попапов
 const setPopupOverlayListener = array =>{
     array.forEach((popup) => {
-        popup.addEventListener('click', (evt) => closePopup(evt.target));
+        popup.addEventListener('mousedown', (evt) => closePopup(evt.target));
         });
 };
+
 
 // КНОПКИ ОТКРЫТИЯ ПОПАПОВ
 profileEditButton.addEventListener('click', function () {
@@ -114,6 +136,7 @@ profileEditButton.addEventListener('click', function () {
 
 addElementButton.addEventListener('click', () => openPopup(popupAddElement)); // открыть добавление места
 
+
 // ФОРМЫ РАБОТЫ С ДАННЫМИ
 formProfile.addEventListener('submit', () => {
     submitProfileForm();
@@ -122,45 +145,24 @@ formProfile.addEventListener('submit', () => {
 }); // сохранить изменения в редактировании профиля и закрыть попап (если сделать сброс инпутов, после открытия и закрытия, сразу горит красным, в таком случае чтобы редактировать чтото одно, то надо менять и второе)
 
 
-formElement.addEventListener('submit', (evt) => {
+cardForm.addEventListener('submit', (evt) => {
     submitElementForm(evt);
 
-    formElement.reset();
+    cardForm.reset();
 
     closePopup(popupAddElement);
 }); // добавить новый элемент (место), сбросить форму и закрыть попап
 
 
-// Интерактив карточки
-elementsBox.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('element__like-button')) {
-        evt.target.classList.toggle('element__like-button_type_active');
-    }
 
-    if (evt.target.classList.contains('element__trash-button')) {
-        evt.target.parentElement.remove();
-    }
-
-    if (evt.target.classList.contains('element__image')) {
-        openPopup(popupZoomImage);
-        imageSrcAndAlt.src = evt.target.src;
-        imageSrcAndAlt.alt = evt.target.alt;
-        imageCaption.textContent = evt.target.alt;
-    }
-}); // слушатель карточки (лайк, удаление и зум фото)
 
 
 // КНОПКИ ЗАКРЫТИЯ ПОПАПОВ
-popupCloseButtonProfile.addEventListener('click',  () => closePopup(popupEditProfile)); // крестик закрытия (профиль)
+popupCloseButtonProfile.addEventListener('mousedown',  () => closePopup(popupEditProfile)); // крестик закрытия (профиль)
 
-popupCloseButtonElement.addEventListener('click',  () => {
-    elementInput.value = "";
-    urlElementInput.value = "";
+popupCloseButtonElement.addEventListener('mousedown',  () => closePopup(popupAddElement)); // крестик закрытия (добавления элемента)
 
-    closePopup(popupAddElement)
-}); // крестик закрытия (добавления элемента)
-
-popupCloseButtonZoomImage.addEventListener('click',  () => closePopup(popupZoomImage)); // крестик закрытия (большой картинки)
+popupCloseButtonZoomImage.addEventListener('mousedown',  () => closePopup(popupZoomImage)); // крестик закрытия (большой картинки)
 
 
 // добавления всех карточке из коробки
