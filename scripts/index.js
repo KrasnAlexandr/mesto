@@ -111,7 +111,7 @@ const setPopupOverlayListener = popups => {
             }
         })
     })
-}
+};
 
 
 // КНОПКИ ОТКРЫТИЯ ПОПАПОВ
