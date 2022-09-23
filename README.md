@@ -24,6 +24,7 @@
 * Реализовано плавное открытие и закрытие всех всплывающих окон
 * Реализована валидация всех форм, сообщения валидации взяты из браузера
 * Реализовано закрытие попапа по клику на фон и по нажатию на Escape
+* ООП
 ## Сылка на макет
 * Спринт №4  
 https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
@@ -31,6 +32,8 @@ https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0
 https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1
 * Спринт №6  
   https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1
+* Спринт №7  
+  Выполнен рефакторинг кода, согласно пройденому материала (ООП)
 
 ## Ссылка на прокет 
 https://krasnalexandr.github.io/mesto/
