@@ -1,9 +1,9 @@
 export default class Card {
 
-    #name
-    #link
-    #templateSelector
-    #element
+    #name;
+    #link;
+    #templateSelector;
+    #element;
 
     constructor(item, templateSelector = '#templateElement') {
         this.#name = item.name;
@@ -12,6 +12,7 @@ export default class Card {
     }
 
 
+    // добавляем все слушатели карточки
     #setEventListeners() {
         this.#element.querySelector('.element__image').addEventListener('click', () => {
             this.#handleOpenPopup();
@@ -26,10 +27,12 @@ export default class Card {
         });
     }
 
+    // находим темплейт и копируем его
     #getTemplate() {
         return document.querySelector(this.#templateSelector).content.querySelector('.element').cloneNode(true);
     }
 
+    // попап картинки
     #handleOpenPopup() {
         const popupZoomImage = document.querySelector('.popup_type_zoom');
         const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image');
@@ -42,16 +45,20 @@ export default class Card {
         imageCaption.textContent = this.#name;
     }
 
+    // удаление карточки
     #deleteElement() {
         this.#element.closest('li').remove();
     }
 
+    // лайк для карточки
     #like() {
         this.#element.querySelector('.element__like-button').classList.toggle('element__like-button_type_active');
     }
 
+
+    //публичный метод, создания карточки, используется в форме создания новой
     generateCard() {
-        this.#element = this.#getTemplate()
+        this.#element = this.#getTemplate();
 
         const elementImage = this.#element.querySelector('.element__image');
         elementImage.src = this.#link;

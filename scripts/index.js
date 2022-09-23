@@ -1,21 +1,47 @@
-// Импорты
-import initialCards from './initialCards.js'; // карточки
-import Card from './Card.js'; // класс
-import FormValidator from './FormValidator.js';
+// импорты
+import Card from './Card.js'; // класс для карточек
+import FormValidator from './FormValidator.js'; // валидация
+
+// карточки "из коробки"
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 
 
+// html классы для валидации
+const params = {
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_type_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_type_active'
+};
 
-// СРЕДА РАЗРАБОТКИ
 
-
-
-
-
-// КОНЕЦ СРЕДЫ
-
-
-
-// массивы
+// псевдомассив попапов
 const popups = document.querySelectorAll(".popup"); // массив всех попапов
 
 // константы профиля
@@ -41,6 +67,9 @@ const cardForm = popupAddElement.querySelector('.popup__form'); // форма д
 const elementInput = cardForm.querySelector('.popup__input_type_element'); //  инпут название элемента (добавление места)
 const urlElementInput = cardForm.querySelector('.popup__input_type_url-element'); // инпут url картинки элемента (добавление картинки места)
 
+// конастанты классов форм
+const profileEditFormValidator = new FormValidator(params, formProfile); // класс для профиля
+const newCardFormValidator = new FormValidator(params, cardForm); // класс для карточки
 
 
 // ФУНКЦИИ
@@ -84,7 +113,10 @@ const addCard = (card, container = elementsBox) => container.prepend(card);
 
 // Функция добавления нового места (через попап)
 const submitNewCard = () => {
-    const item = { name: elementInput.value, link: urlElementInput.value }
+    const item = {
+        name: elementInput.value,
+        link: urlElementInput.value
+    }
 
     renderingAndPublishingCard(item);
 };
@@ -94,10 +126,10 @@ const setPopupOverlayAndXListener = popups => {
     popups.forEach((popup) => {
         popup.addEventListener('mousedown', (evt) => {
             if (evt.target.classList.contains('popup_opened')) {
-                closePopup(popup)
+                closePopup(popup);
             }
             if (evt.target.classList.contains('popup__close-button')) {
-                closePopup(popup)
+                closePopup(popup);
             }
         })
     })
@@ -117,6 +149,8 @@ addElementButton.addEventListener('click', () => openPopup(popupAddElement)); //
 
 // ФОРМЫ РАБОТЫ С ДАННЫМИ
 formProfile.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
     submitProfileForm();
 
     evt.submitter.classList.add('popup__submit-button_type_disabled');
@@ -125,11 +159,12 @@ formProfile.addEventListener('submit', (evt) => {
     closePopup(popupEditProfile);
 }); // сохранить изменения в редактировании профиля и закрыть попап (если сделать сброс инпутов, после открытия и закрытия, сразу горит красным, в таком случае чтобы редактировать чтото одно, то надо менять и второе)
 
-
 cardForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
     submitNewCard();
 
-    evt.target.reset()
+    evt.target.reset();
 
     evt.submitter.classList.add('popup__submit-button_type_disabled');
     evt.submitter.setAttribute('disabled', 'true');
@@ -139,9 +174,9 @@ cardForm.addEventListener('submit', (evt) => {
 
 
 // Добавление всех карточек из коробки
-initialCards.forEach((item) => renderingAndPublishingCard(item));
+initialCards.forEach(renderingAndPublishingCard);
 // добавления закрытия по клику оверлея или кнопки (крестика) для всех попапов
 setPopupOverlayAndXListener(popups);
-
-
-
+// добавление валидации через публичный метод
+profileEditFormValidator.enableValidation(); // радактирования профиля
+newCardFormValidator.enableValidation(); // обавления карточки
