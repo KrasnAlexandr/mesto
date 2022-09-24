@@ -71,6 +71,10 @@ const urlElementInput = cardForm.querySelector('.popup__input_type_url-element')
 const profileEditFormValidator = new FormValidator(params, formProfile); // класс для профиля
 const newCardFormValidator = new FormValidator(params, cardForm); // класс для карточки
 
+// константы зум попапа
+const popupZoomImage = document.querySelector('.popup_type_zoom');
+const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image');
+const imageCaption = popupZoomImage.querySelector('.popup__figure-caption');
 
 // ФУНКЦИИ
 // функция закрытия по Escape
@@ -100,12 +104,10 @@ const submitProfileForm = () => {
 };
 
 //фукнция рндеринга карточки (и добавления в ленту)
-const renderingAndPublishingCard = item => {
-    const card = new Card(item);
+const createCard = (item, templateSelector, handleOpenPopup) => {
+    const card = new Card(item, templateSelector, handleOpenPopup);
 
-    const renderCard = card.generateCard();
-
-    addCard(renderCard);
+    return card.generateCard();
 };
 
 // Функция добавления карточки в ленту
@@ -118,7 +120,7 @@ const submitNewCard = () => {
         link: urlElementInput.value
     }
 
-    renderingAndPublishingCard(item);
+    addCard(createCard(item, '#templateElement', handleOpenPopup));
 };
 
 // Функция закрытия по клику оверлея или кнопки (крестика)
@@ -142,9 +144,24 @@ profileEditButton.addEventListener('click', function () {
 
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
+
+    profileEditFormValidator.resetValidation();
 });  // открыть редактор профиля
 
-addElementButton.addEventListener('click', () => openPopup(popupAddElement)); // открыть добавление места
+addElementButton.addEventListener('click', () => {
+    openPopup(popupAddElement)
+
+    newCardFormValidator.resetValidation();
+}); // открыть добавление места
+
+function handleOpenPopup(item) {
+    imageSrcAndAlt.src = item.link;
+
+    imageSrcAndAlt.alt = item.name;
+    imageCaption.textContent = item.name;
+
+    openPopup(popupZoomImage);
+} // функция для открытия попапа картинки (передается в конструктор)
 
 
 // ФОРМЫ РАБОТЫ С ДАННЫМИ
@@ -152,9 +169,6 @@ formProfile.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     submitProfileForm();
-
-    evt.submitter.classList.add('popup__submit-button_type_disabled');
-    evt.submitter.setAttribute('disabled', 'true');
 
     closePopup(popupEditProfile);
 }); // сохранить изменения в редактировании профиля и закрыть попап (если сделать сброс инпутов, после открытия и закрытия, сразу горит красным, в таком случае чтобы редактировать чтото одно, то надо менять и второе)
@@ -166,17 +180,19 @@ cardForm.addEventListener('submit', (evt) => {
 
     evt.target.reset();
 
-    evt.submitter.classList.add('popup__submit-button_type_disabled');
-    evt.submitter.setAttribute('disabled', 'true');
-
     closePopup(popupAddElement);
 }); // добавить новую карточку, сбросить форму и кнопку, закрыть попап
 
 
 // Добавление всех карточек из коробки
-initialCards.forEach(renderingAndPublishingCard);
+initialCards.forEach((item) => addCard(createCard(item, '#templateElement', handleOpenPopup)));
 // добавления закрытия по клику оверлея или кнопки (крестика) для всех попапов
 setPopupOverlayAndXListener(popups);
 // добавление валидации через публичный метод
 profileEditFormValidator.enableValidation(); // радактирования профиля
 newCardFormValidator.enableValidation(); // обавления карточки
+
+
+
+// СРЕДА РАЗРАБОТКИ
+

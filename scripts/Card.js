@@ -4,27 +4,29 @@ export default class Card {
     #link;
     #templateSelector;
     #element;
+    #handleOpenPopup;
 
-    constructor(item, templateSelector = '#templateElement') {
+    constructor(item, templateSelector, handleOpenPopup) {
         this.#name = item.name;
         this.#link = item.link;
         this.#templateSelector = templateSelector;
+        this.#handleOpenPopup = handleOpenPopup;
     }
 
 
     // добавляем все слушатели карточки
     #setEventListeners() {
         this.#element.querySelector('.element__image').addEventListener('click', () => {
-            this.#handleOpenPopup();
-        });
+            this.#handleOpenPopup({ name: this.#name, link: this.#link });
+        }); // зум
 
         this.#element.querySelector('.element__trash-button').addEventListener('click', () => {
             this.#deleteElement();
-        });
+        }); // удаление
 
         this.#element.querySelector('.element__like-button').addEventListener('click', () => {
             this.#like();
-        });
+        }); // лайк
     }
 
     // находим темплейт и копируем его
@@ -32,22 +34,9 @@ export default class Card {
         return document.querySelector(this.#templateSelector).content.querySelector('.element').cloneNode(true);
     }
 
-    // попап картинки
-    #handleOpenPopup() {
-        const popupZoomImage = document.querySelector('.popup_type_zoom');
-        const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image');
-        const imageCaption = popupZoomImage.querySelector('.popup__figure-caption');
-
-        popupZoomImage.classList.add('popup_opened');
-
-        imageSrcAndAlt.src = this.#link;
-        imageSrcAndAlt.alt = this.#name;
-        imageCaption.textContent = this.#name;
-    }
-
     // удаление карточки
     #deleteElement() {
-        this.#element.closest('li').remove();
+        this.#element.remove();
     }
 
     // лайк для карточки

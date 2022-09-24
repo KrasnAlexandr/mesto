@@ -51,16 +51,17 @@ export default class FormValidator {
     }
 
     // функция проверки инпутов
-    #hasInvalidInput = (inputList) => inputList.some((inputElement) => !inputElement.validity.valid);
+    #hasInvalidInput = () => this.#inputList.some((inputElement) => !inputElement.validity.valid);
+
 
     // функция активации и деактивации кнопки
     #toggleButtonState() {
         if (this.#hasInvalidInput(this.#inputList)) {
             this.#buttonElement.classList.add(this.#inactiveButtonClass);
-            this.#buttonElement.disbaled = true;
+            this.#buttonElement.setAttribute('disabled', 'disabled')
         } else {
             this.#buttonElement.classList.remove(this.#inactiveButtonClass);
-            this.#buttonElement.disabled = false;
+            this.#buttonElement.removeAttribute('disabled')
         }
     }
 
@@ -75,8 +76,20 @@ export default class FormValidator {
         })
     }
 
+
+    // публинчый метод для сброса ошибок и кнопки сабмита
+    resetValidation() {
+        this.#toggleButtonState();
+
+        this.#inputList.forEach((inputElement) => {
+            this.#hideInputError(inputElement)
+        });
+    }
+
     // публичный метод, для добавления валидации форме
     enableValidation() {
         this.#setEventListeners();
     }
 }
+
+//спасибо за ревью
