@@ -56,7 +56,7 @@ export default class FormValidator {
 
     // функция активации и деактивации кнопки
     #toggleButtonState() {
-        if (this.#hasInvalidInput(this.#inputList)) {
+        if (this.#hasInvalidInput()) {
             this.#buttonElement.classList.add(this.#inactiveButtonClass);
             this.#buttonElement.setAttribute('disabled', 'disabled')
         } else {
@@ -91,5 +91,3 @@ export default class FormValidator {
         this.#setEventListeners();
     }
 }
-
-//спасибо за ревью

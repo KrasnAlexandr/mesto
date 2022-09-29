@@ -104,8 +104,8 @@ const submitProfileForm = () => {
 };
 
 //фукнция рндеринга карточки (и добавления в ленту)
-const createCard = (item, templateSelector, handleOpenPopup) => {
-    const card = new Card(item, templateSelector, handleOpenPopup);
+const createCard = item => {
+    const card = new Card(item, '#templateElement', handleOpenPopupZoom);
 
     return card.generateCard();
 };
@@ -120,7 +120,7 @@ const submitNewCard = () => {
         link: urlElementInput.value
     }
 
-    addCard(createCard(item, '#templateElement', handleOpenPopup));
+    addCard(createCard(item));
 };
 
 // Функция закрытия по клику оверлея или кнопки (крестика)
@@ -154,7 +154,7 @@ addElementButton.addEventListener('click', () => {
     newCardFormValidator.resetValidation();
 }); // открыть добавление места
 
-function handleOpenPopup(item) {
+function handleOpenPopupZoom(item) {
     imageSrcAndAlt.src = item.link;
 
     imageSrcAndAlt.alt = item.name;
@@ -185,14 +185,10 @@ cardForm.addEventListener('submit', (evt) => {
 
 
 // Добавление всех карточек из коробки
-initialCards.forEach((item) => addCard(createCard(item, '#templateElement', handleOpenPopup)));
+initialCards.forEach((item) => addCard(createCard(item)));
 // добавления закрытия по клику оверлея или кнопки (крестика) для всех попапов
 setPopupOverlayAndXListener(popups);
 // добавление валидации через публичный метод
 profileEditFormValidator.enableValidation(); // радактирования профиля
 newCardFormValidator.enableValidation(); // обавления карточки
-
-
-
-// СРЕДА РАЗРАБОТКИ
 

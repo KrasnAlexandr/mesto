@@ -4,20 +4,20 @@ export default class Card {
     #link;
     #templateSelector;
     #element;
-    #handleOpenPopup;
+    #handleOpenPopupZoom;
 
-    constructor(item, templateSelector, handleOpenPopup) {
+    constructor(item, templateSelector, handleOpenPopupZoom) {
         this.#name = item.name;
         this.#link = item.link;
         this.#templateSelector = templateSelector;
-        this.#handleOpenPopup = handleOpenPopup;
+        this.#handleOpenPopupZoom = handleOpenPopupZoom;
     }
 
 
     // добавляем все слушатели карточки
     #setEventListeners() {
         this.#element.querySelector('.element__image').addEventListener('click', () => {
-            this.#handleOpenPopup({ name: this.#name, link: this.#link });
+            this.#handleOpenPopupZoom({ name: this.#name, link: this.#link });
         }); // зум
 
         this.#element.querySelector('.element__trash-button').addEventListener('click', () => {
