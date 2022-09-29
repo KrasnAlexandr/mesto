@@ -189,6 +189,6 @@ initialCards.forEach((item) => addCard(createCard(item)));
 // добавления закрытия по клику оверлея или кнопки (крестика) для всех попапов
 setPopupOverlayAndXListener(popups);
 // добавление валидации через публичный метод
-profileEditFormValidator.enableValidation(); // радактирования профиля
-newCardFormValidator.enableValidation(); // обавления карточки
+profileEditFormValidator.enableValidation(); // для профиля
+newCardFormValidator.enableValidation(); // для карточки
 
