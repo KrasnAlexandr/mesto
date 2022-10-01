@@ -6,9 +6,9 @@ export default class Card {
     #element;
     #handleOpenPopupZoom;
 
-    constructor(item, templateSelector, handleOpenPopupZoom) {
-        this.#name = item.name;
-        this.#link = item.link;
+    constructor({ name, link }, templateSelector, handleOpenPopupZoom) {
+        this.#name = name;
+        this.#link = link;
         this.#templateSelector = templateSelector;
         this.#handleOpenPopupZoom = handleOpenPopupZoom;
     }

@@ -9,13 +9,13 @@ export default class FormValidator {
     #inputList;
     #buttonElement;
 
-    constructor(params, classForm) {
+    constructor({ inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }, classForm) {
         // все классы
-        this.#inputSelector = params.inputSelector;
-        this.#submitButtonSelector = params.submitButtonSelector;
-        this.#inactiveButtonClass = params.inactiveButtonClass;
-        this.#inputErrorClass = params.inputErrorClass;
-        this.#errorClass = params.errorClass;
+        this.#inputSelector = inputSelector;
+        this.#submitButtonSelector = submitButtonSelector;
+        this.#inactiveButtonClass = inactiveButtonClass;
+        this.#inputErrorClass = inputErrorClass;
+        this.#errorClass = errorClass;
 
         // форма которой добавлем валидацию
         this.#classForm = classForm;
