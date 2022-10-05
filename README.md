@@ -10,7 +10,7 @@
 * БЭМ
 ### CSS
 * Flexbox
-* Grid Layout
+* Grid 
 * Адаптивная верстка с использованием медиа-запросов
 * Позиционирование блоков и элементов
 * БЭМ Nested
@@ -25,6 +25,7 @@
 * Реализована валидация всех форм, сообщения валидации взяты из браузера
 * Реализовано закрытие попапа по клику на фон и по нажатию на Escape
 * ООП
+* WebPack 
 ## Сылка на макет
 * Спринт №4  
 https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
@@ -33,7 +34,9 @@ https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0
 * Спринт №6  
   https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1
 * Спринт №7  
-  Выполнен рефакторинг кода, согласно пройденому материала (ООП)
+  Выполнен рефакторинг кода, согласно пройденому материалу (ООП)
+* Спринт №8  
+  Выполнен рефакторинг кода, согласно пройденому материала (ООП), сборка проекта через WebPack
 
 ## Ссылка на прокет 
 https://krasnalexandr.github.io/mesto/

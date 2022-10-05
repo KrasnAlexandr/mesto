@@ -1,6 +1,7 @@
 // импорты
-import Card from './Card.js'; // класс для карточек
-import FormValidator from './FormValidator.js'; // валидация
+import Card from '../components/Card.js'; // класс для карточек
+import FormValidator from '../components/FormValidator.js'; // валидация
+import '../styles/index.css'; // css для webpack
 
 // карточки "из коробки"
 const initialCards = [
