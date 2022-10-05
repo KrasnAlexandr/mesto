@@ -1,81 +1,40 @@
 // импорты
-import Card from '../components/Card.js'; // класс для карточек
-import FormValidator from '../components/FormValidator.js'; // валидация
-import '../styles/index.css'; // css для webpack
+import {
+    addElementButton, cardForm,
+    elementInput,
+    elementsBox,
+    formProfile,
+    imageCaption,
+    imageSrcAndAlt,
+    initialCards,
+    job,
+    jobInput,
+    nameInput,
+    params,
+    popupAddElement,
+    popupEditProfile,
+    popups,
+    popupZoomImage,
+    profileEditButton,
+    urlElementInput,
+    name,
+} from '../utils/constants'; // константы
 
-// карточки "из коробки"
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+import Card from "../components/Card.js"; // класс карточек
+import FormValidator from "../components/FormValidator"; // класс валидации
+import Section from "../components/Section.js"; // класс рендеринга
+import Popup from "../components/Popup"; // класс попапа
+import '../pages/index.css'; // css для webpack
 
-
-// html классы для валидации
-const params = {
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__submit-button_type_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_type_active'
-};
-
-
-// псевдомассив попапов
-const popups = document.querySelectorAll(".popup"); // массив всех попапов
-
-// константы профиля
-const popupEditProfile = document.querySelector('.popup_type_profile'); // поиск попапа профиля
-const profileEditButton = document.querySelector('.profile__edit-button'); // кнопка отркытия редактирования профиля (карандаш)
-
-// Форма попапа (профиль)
-const formProfile = popupEditProfile.querySelector('.popup__form'); //  форма редактирования профиля
-const nameInput = formProfile.querySelector('.popup__input_type_name'); //   инпут имя (редактирование профиля)
-const jobInput = formProfile.querySelector('.popup__input_type_description'); //  инпут работа (редактирование профиля)
-
-// html элементы
-const elementsBox = document.querySelector('.elements__box'); // место под карточки (ul)
-const name = document.querySelector('.profile__name'); // html имя профиля (то что редактируется в DOM)
-const job = document.querySelector('.profile__description'); // html работа профиля (то что редактируется в DOM)
-
-// константы попапа карточек
-const popupAddElement = document.querySelector('.popup_type_elements'); // поиск попапа добавления места
-const addElementButton = document.querySelector('.profile__add-button'); // кнопка открытия попапа добавления элемента (плюсик)
-
-// константы формы карточек
-const cardForm = popupAddElement.querySelector('.popup__form'); // форма добавления элемента (место)
-const elementInput = cardForm.querySelector('.popup__input_type_element'); //  инпут название элемента (добавление места)
-const urlElementInput = cardForm.querySelector('.popup__input_type_url-element'); // инпут url картинки элемента (добавление картинки места)
-
-// конастанты классов форм
+// ПОД ВОПРОСОМ
+// образцы классов форм
 const profileEditFormValidator = new FormValidator(params, formProfile); // класс для профиля
 const newCardFormValidator = new FormValidator(params, cardForm); // класс для карточки
 
-// константы зум попапа
-const popupZoomImage = document.querySelector('.popup_type_zoom');
-const imageSrcAndAlt = popupZoomImage.querySelector('.popup__zoom-image');
-const imageCaption = popupZoomImage.querySelector('.popup__figure-caption');
+
+
+// КОНЕЦ ПОД ВОПРОСОМ
+
 
 // ФУНКЦИИ
 // функция закрытия по Escape
@@ -179,7 +138,8 @@ cardForm.addEventListener('submit', (evt) => {
 
     submitNewCard();
 
-    evt.target.reset();
+    elementInput.value = '';
+    urlElementInput.value = '';
 
     closePopup(popupAddElement);
 }); // добавить новую карточку, сбросить форму и кнопку, закрыть попап
