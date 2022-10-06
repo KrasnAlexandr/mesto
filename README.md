@@ -36,7 +36,7 @@ https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0
 * Спринт №7  
   Выполнен рефакторинг кода, согласно пройденому материалу (ООП)
 * Спринт №8  
-  Выполнен рефакторинг кода, согласно пройденому материала (ООП), сборка проекта через WebPack
+  Выполнен рефакторинг кода, согласно пройденому материалу (ООП), сборка проекта через WebPack
 
 ## Ссылка на прокет 
-https://krasnalexandr.github.io/mesto/
+https://krasnalexandr.github.io/mesto/  <-- временно не работает 

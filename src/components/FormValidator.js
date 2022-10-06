@@ -40,7 +40,7 @@ export default class FormValidator {
 
         inputElement.classList.remove(this.#inputErrorClass);
         errorElement.classList.remove(this.#errorClass);
-        errorElement.textContent = '';
+        errorElement.textContent = "";
     }
 
     // проверка валидности инпутов
@@ -58,10 +58,10 @@ export default class FormValidator {
     #toggleButtonState() {
         if (this.#hasInvalidInput()) {
             this.#buttonElement.classList.add(this.#inactiveButtonClass);
-            this.#buttonElement.setAttribute('disabled', 'disabled')
+            this.#buttonElement.setAttribute("disabled", "disabled")
         } else {
             this.#buttonElement.classList.remove(this.#inactiveButtonClass);
-            this.#buttonElement.removeAttribute('disabled')
+            this.#buttonElement.removeAttribute("disabled")
         }
     }
 
@@ -69,7 +69,7 @@ export default class FormValidator {
     #setEventListeners() {
         this.#toggleButtonState()
         this.#inputList.forEach((inputElement) => {
-            inputElement.addEventListener('input', () => {
+            inputElement.addEventListener("input", () => {
                 this.#checkInputValidity(inputElement);
                 this.#toggleButtonState();
             })
