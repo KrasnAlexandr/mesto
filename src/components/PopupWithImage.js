@@ -11,6 +11,7 @@ export default class PopupWithImage extends Popup {
         this.#popupImageTitle = this.popup.querySelector(".popup__figure-caption");
     }
 
+    // расширяет родительский метод и передает ссылку и название картинки в попап (важно отслеживать name инпутов)
     open({ name, link }) {
         this.#popupImageLink.src = link;
 

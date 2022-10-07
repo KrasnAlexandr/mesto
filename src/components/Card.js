@@ -37,6 +37,7 @@ export default class Card {
     // удаление карточки
     #deleteElement() {
         this.#element.remove();
+        this.#element = null;
     }
 
     // лайк для карточки

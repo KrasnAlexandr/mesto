@@ -14,6 +14,7 @@ export default class PopupWithForm extends Popup {
         this.#handleFormSubmit = handleFormSubmit;
     }
 
+    // метод по сбору данных со всех ипнутов формы и создании объекта из собраных данных (возвращает объект)
     #getInputValues() {
         this.#formValues = {};
         this.#inputList.forEach(input => {
@@ -22,6 +23,7 @@ export default class PopupWithForm extends Popup {
         return this.#formValues;
     }
 
+    // расширение родительского слушателя, добавляет --> сброс обновления страницы, обработку собраных даных, закрытие попапа
     setEventListeners() {
         super.setEventListeners();
         this.popup.addEventListener("submit", (evt) => {
@@ -31,6 +33,7 @@ export default class PopupWithForm extends Popup {
         });
     }
 
+    // расширение родительского метода --> сбрасывает инпуты формы
     close() {
         super.close();
         this.#popupForm.reset();

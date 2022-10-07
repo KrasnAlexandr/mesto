@@ -8,6 +8,7 @@ export default class UserInfo {
         this.#job = document.querySelector(description);
     }
 
+    // публичный метод для получения актуалных данных пользователя
     getUserInfo() {
         return {
             title: this.#name.textContent,
@@ -15,6 +16,7 @@ export default class UserInfo {
         };
     }
 
+    // публичный метод для изменения данных пользователя
     setUserInfo({ title, description }) {
         this.#name.textContent = title;
         this.#job.textContent = description;
