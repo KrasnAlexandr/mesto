@@ -17,6 +17,7 @@ export default class PopupWithForm extends Popup {
     // метод по сбору данных со всех ипнутов формы и создании объекта из собраных данных (возвращает объект)
     #getInputValues() {
         this.#formValues = {};
+
         this.#inputList.forEach(input => {
             this.#formValues[input.name] = input.value;
         });
