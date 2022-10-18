@@ -39,4 +39,4 @@ https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0
   Выполнен рефакторинг кода, согласно пройденому материалу (ООП), сборка проекта через WebPack
 
 ## Ссылка на прокет 
-https://krasnalexandr.github.io/mesto/  <-- временно не работает 
+https://krasnalexandr.github.io/mesto/ 
