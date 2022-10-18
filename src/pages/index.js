@@ -55,7 +55,7 @@ popupSubmitCard.setEventListeners(); // для карточек
 popupWithImage.setEventListeners(); // зум картинки
 
 // добавление валидации через публичный метод
-profileEditFormValidator.enableValidation(); // для профиля
+profileEditFormValidator.enableValidation();  // для профиля
 newCardFormValidator.enableValidation(); // для карточки
 
 
