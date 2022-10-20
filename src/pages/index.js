@@ -76,7 +76,7 @@ const popupAvatar = new PopupWithForm(".popup_type_edit_avatar", (avatar) => {
         .then(newInfo => {
             userInfo.updateUserAvatar({ avatar: newInfo.avatar })
         })
-        .catch(err => console.error(err))
+        .catch(() => alert('Пожалуйста, укажите ссылку на картинку'))
         .finally(() => popupAvatar.renderLoading(false));
 }); // попап редактирования аватара
 
