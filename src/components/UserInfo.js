@@ -2,10 +2,14 @@ export default class UserInfo {
 
     #name;
     #job;
+    #avatar;
+    #userId;
 
-    constructor({ title, description }) {
+
+    constructor({ title, description, avatar }) {
         this.#name = document.querySelector(title);
         this.#job = document.querySelector(description);
+        this.#avatar = document.querySelector(avatar);
     }
 
     // публичный метод для получения актуалных данных пользователя
@@ -17,8 +21,23 @@ export default class UserInfo {
     }
 
     // публичный метод для изменения данных пользователя
-    setUserInfo({ title, description }) {
-        this.#name.textContent = title;
-        this.#job.textContent = description;
+    setUserInfo(userInfo) {
+        this.#name.textContent = userInfo.title;
+        this.#job.textContent = userInfo.description;
+        this.#avatar.src = userInfo.avatar;
+        this.#userId = userInfo._id;
+    }
+
+    updateUserTextInfo(userInfo) {
+        this.#name.textContent = userInfo.title;
+        this.#job.textContent = userInfo.description;
+    }
+
+    updateUserAvatar(userInfo) {
+        this.#avatar.src = userInfo.avatar;
+    }
+
+    getUserId() {
+        return this.#userId;
     }
 }

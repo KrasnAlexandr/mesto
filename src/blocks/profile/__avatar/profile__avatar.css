@@ -1,14 +1,16 @@
 .profile__avatar {
+    margin: 0;
     padding: 0;
-    margin: 0 30px 0 0;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: rgba(196, 196, 196, 1);
+    object-fit: cover;
+    object-position: center;
+    transition: all .222s ease-in-out;
 }
 
-@media screen and (max-width: 768px){
-    .profile__avatar {
-        margin: 0 0 25px 0;
-    }
+.profile__avatar:hover{
+    cursor:pointer;
+    opacity: 0.2;
 }
+

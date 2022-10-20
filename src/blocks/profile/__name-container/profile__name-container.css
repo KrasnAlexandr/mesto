@@ -5,9 +5,15 @@
     grid-template-columns: 1fr 24px;
     column-gap: 19px;
     row-gap: 8px;
-    margin-right: 24px;
+    margin: 0 24px 0 30px;
     grid-template-areas:"name button"
                         "job job";
+}
+
+@media screen and (max-width: 768px){
+    .profile__name-container {
+        margin-top: 25px;
+    }
 }
 
 @media screen and (max-width: 680px) {

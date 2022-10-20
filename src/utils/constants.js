@@ -41,6 +41,10 @@ export const params = {
 export const popupEditProfile = document.querySelector(".popup_type_profile"); // поиск попапа профиля
 export const profileEditButton = document.querySelector(".profile__edit-button"); // кнопка отркытия редактирования профиля (карандаш)
 
+// редактирование аватара
+export const avatarEditButton = document.querySelector(".profile__avatar-button");
+export const popupEditAvatar = document.querySelector(".popup_type_edit_avatar");
+
 // Форма попапа (профиль)
 export const formProfile = popupEditProfile.querySelector(".popup__form"); //  форма редактирования профиля
 export const nameInput = formProfile.querySelector(".popup__input_type_name"); //   инпут имя (редактирование профиля)
@@ -52,3 +56,9 @@ export const addElementButton = document.querySelector(".profile__add-button"); 
 
 // константы формы карточек
 export const cardForm = popupAddElement.querySelector(".popup__form"); // форма добавления элемента (место)
+
+export const avatarForm = popupEditAvatar.querySelector(".popup__form");
+
+
+
+export const authorizationData = { mainUrl: "https://mesto.nomoreparties.co/v1/cohort-52", token: "9b5c980e-5c96-4ddc-994e-a1294e994c02" }; // url когоррты и индивидуальный токен
