@@ -74,7 +74,6 @@ const popupAvatar = new PopupWithForm(".popup_type_edit_avatar", (avatar) => {
 
     api.updateUserAvatar(avatar)
         .then(newInfo => {
-            console.log(newInfo)
             userInfo.updateUserAvatar({ avatar: newInfo.avatar })
         })
         .catch(err => console.error(err))
