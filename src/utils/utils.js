@@ -26,7 +26,7 @@ const handleLikeCard = (card) => {
             })
             .catch(err => console.error(err));
     }
-}
+} // функция для обработки лайка
 
 export const createCard = (item, userId) => {
     const card = new Card(item, userId, '#templateElement', handleCardClick, handelOpenPopupDeleteCard, handleLikeCard);

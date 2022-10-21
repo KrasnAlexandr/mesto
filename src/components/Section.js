@@ -17,7 +17,7 @@ export default class Section {
     }
 
     // публичный метод для добавления нового элемента в дом дерево
-    addItem(item) {
-        this.#container.prepend(item);
+    addItem(card) {
+        this.#container.prepend(card);
     }
 }

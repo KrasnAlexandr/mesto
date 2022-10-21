@@ -25,6 +25,9 @@ import Api from "../components/Api"; // класс api отвечающий за
 import "../pages/index.css"; // css для webpack
 
 
+// необходимая переменная, для исключения дублированния класса
+let section;
+
 
 // ЭКЗЕМЛЯРЫ КЛАССОВ ДЛЯ РАБОТЫ С ДАННЫМИ
 export const api = new Api(authorizationData); // api для обмена с сервером
@@ -33,7 +36,6 @@ export const popupWithImage = new PopupWithImage(".popup_type_zoom"); // поп�
 
 const userInfo = new UserInfo({ title: ".profile__name", description: ".profile__description", avatar: ".profile__avatar" }); // класс для работы с данными пользователя
 
-const section = new Section({ renderer: (item) => section.addItem(createCard(item)) },".elements__box"); // экземляп для рендеринга карточки
 
 
 
@@ -134,20 +136,16 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(result => {
         const [info, startCards] = result;
 
-
         //загружаем данные с сервера о пользователи и сразу их рендерим и сохраняем в класс (важно первым, чтобы потом подтягивался ID)
-        if (info) {
-            userInfo.setUserInfo({ title: info.name, description: info.about, avatar: info.avatar , _id: info._id })
-        }
+        userInfo.setUserInfo({ title: info.name, description: info.about, avatar: info.avatar , _id: info._id });
+
 
         // обрабатываем полученные карточки и создаем все что хранятся на сервере
-        if (startCards) {
-            const reverseStartCard = startCards.reverse();
+        const reverseStartCard = startCards.reverse();
+        section = new Section({ items: reverseStartCard,
+            renderer: (card) => section.addItem(createCard(card, userInfo.getUserId()))
+        },".elements__box");
 
-            const renderStartCards = new Section({ items: reverseStartCard,
-                renderer: (card) => section.addItem(createCard(card, userInfo.getUserId()))
-            },".elements__box");
+        section.renderItems();
 
-            renderStartCards.renderItems();
-        }
     }).catch(err => console.error(err));
