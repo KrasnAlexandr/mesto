@@ -70,7 +70,7 @@ const popupSubmitCard = new PopupWithForm(".popup_type_elements", (card) => {
 }); // попап добавления новых мест
 
 
-const popupAvatar = new PopupWithForm(".popup_type_edit_avatar", (avatar) => {
+const popupAvatar = new PopupWithForm(".popup_type_edit-avatar", (avatar) => {
     popupAvatar.renderLoading(true);
 
     api.updateUserAvatar(avatar)

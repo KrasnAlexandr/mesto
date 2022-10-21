@@ -43,7 +43,7 @@ export const profileEditButton = document.querySelector(".profile__edit-button")
 
 // редактирование аватара
 export const avatarEditButton = document.querySelector(".profile__avatar-button");
-export const popupEditAvatar = document.querySelector(".popup_type_edit_avatar");
+export const popupEditAvatar = document.querySelector(".popup_type_edit-avatar");
 
 // Форма попапа (профиль)
 export const formProfile = popupEditProfile.querySelector(".popup__form"); //  форма редактирования профиля
