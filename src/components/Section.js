@@ -2,6 +2,7 @@ export default class Section {
 
     #items;
     #renderer;
+
     #container;
 
     constructor({ items, renderer }, containerSelector) {
@@ -13,11 +14,13 @@ export default class Section {
 
     // публичный метод для рендеринга всех карточек из коробки (в колбеке передается другой публичный метод для добавления в дом дерево)
     renderItems() {
-        this.#items.forEach(item => this.#renderer(item));
+        this.#items.forEach(item => this.addItem(item));
     }
 
-    // публичный метод для добавления нового элемента в дом дерево
+    // публичный метод для добавления элемента в дом дерево (расширение, для исключения дублирования в index.js)
     addItem(card) {
-        this.#container.prepend(card);
+        const newCard = this.#renderer(card);
+
+        this.#container.prepend(newCard);
     }
 }

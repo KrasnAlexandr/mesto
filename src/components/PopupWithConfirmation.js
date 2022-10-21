@@ -10,7 +10,7 @@ export default class PopupWithConfirmation extends Popup {
 
     constructor(popupSelector, handleFormSubmit) {
         super(popupSelector);
-        this.#popupForm = this.popup.querySelector('.popup__form');
+        this.#popupForm = this.popup.querySelector(".popup__form");
 
         this.#handleFormSubmit = handleFormSubmit;
         this.#submitButton = this.#popupForm.querySelector(".popup__submit-button");
@@ -33,7 +33,7 @@ export default class PopupWithConfirmation extends Popup {
         });
     }
 
-    // изменение кнопки
+    // ux кнопки
     renderLoading(isLoading) {
         if (isLoading) {
             this.#submitButton.textContent = "Удаление...";

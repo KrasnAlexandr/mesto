@@ -1,17 +1,16 @@
-import Card from "../components/Card.js"; // класс карточек
 import { popupWithImage, api, popupWithConfirmation } from "../pages/index.js";
 
-const handleCardClick = item => {
-    popupWithImage.open(item);
+export const handleCardClick = card => {
+    popupWithImage.open(card);
 }; // функция для открытия попапа картинки (передается в конструктор)
 
 
-const handelOpenPopupDeleteCard = card => {
+export const handelOpenPopupDeleteCard = card => {
     popupWithConfirmation.open(card);
 } // функция для открытия попапа удаления карточки (принимает на вход весь this)
 
 
-const handleLikeCard = (card) => {
+export const handleLikeCard = (card) => {
     if (card.hasMyLike) {
         api.dislikeThisCard(card.cardId)
             .then((res) => {
@@ -26,10 +25,4 @@ const handleLikeCard = (card) => {
             })
             .catch(err => console.error(err));
     }
-} // функция для обработки лайка
-
-export const createCard = (item, userId) => {
-    const card = new Card(item, userId, '#templateElement', handleCardClick, handelOpenPopupDeleteCard, handleLikeCard);
-
-    return card.generateCard();
-}; //функция создания карточки
+}

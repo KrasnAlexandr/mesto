@@ -46,7 +46,7 @@ export default class PopupWithForm extends Popup {
         this.#popupForm.reset();
     }
 
-    //
+    // ux кнопки
     renderLoading(isLoading) {
         if (isLoading) {
             this.#submitButton.textContent = "Сохранение...";

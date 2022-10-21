@@ -13,7 +13,7 @@ export default class Api {
         if (res.ok) {
             return res.json();
         } else {
-            return Promise.reject(`Ошибка => ${res.status} => ${res.statusText}`);
+            return Promise.reject(`Ошибка: ${res.status} => ${res.statusText}`);
         }
     }
 
@@ -117,6 +117,5 @@ export default class Api {
         })
             .then(res => this.#checkResponse(res));
     }
-
 }
 

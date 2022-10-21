@@ -1,20 +1,25 @@
 export default class Card {
-
-    #name;
-    #link;
     #templateSelector;
     #element;
-    #handleCardClick;
+
     #likes;
     #myId;
     #userIdOwner;
     #isMyCard;
+
+    #handleCardClick;
     #handelOpenPopupConfirmation;
     #handleLikeCard;
 
+    #cardTitle;
+    #image;
+    #likeButton;
+    #likeCounter;
+    #deleteButton;
+
     constructor(card, myId, templateSelector, handleCardClick, handelOpenPopupDeleteCard, handleLikeCard) {
-        this.#name = card.name;
-        this.#link = card.link;
+        this.name = card.name;
+        this.link = card.link;
         this.#templateSelector = templateSelector;
 
         this.#myId = myId;
@@ -29,25 +34,25 @@ export default class Card {
         this.#handleCardClick = handleCardClick; // функция для зума фото
         this.#handelOpenPopupConfirmation = handelOpenPopupDeleteCard; // попап открытия карточки
         this.#handleLikeCard = handleLikeCard; // функция для лайка карточки
-
     }
 
 
     // добавляем все слушатели карточки
     #setEventListeners() {
-        this.#element.querySelector('.element__image').addEventListener("click", () => {
-            this.#handleCardClick({ name: this.#name, link: this.#link });
+        this.#image.addEventListener("click", () => {
+            this.#handleCardClick(this);
         }); // зум
 
         if (!this.#isMyCard) {
-            this.#element.querySelector('.element__trash-button').remove();
+            this.#deleteButton.remove();
+            this.#deleteButton = null;
         } else {
-            this.#element.querySelector('.element__trash-button').addEventListener("click", () => {
+            this.#deleteButton.addEventListener("click", () => {
                 this.#handelOpenPopupConfirmation(this);
             }); // удаление, в случае, если картинка не моя, икнока удаления пропадает
         }
 
-        this.#element.querySelector('.element__like-button').addEventListener("click", () => {
+        this.#likeButton.addEventListener("click", () => {
             this.#handleLikeCard(this);
         }); // лайк
     }
@@ -65,17 +70,16 @@ export default class Card {
 
     // лайк карточки
     likeThisCard(newValue) {
-        this.#element.querySelector(".element__like-button").classList.add("element__like-button_type_active");
-        this.#element.querySelector(".element__like-counter").textContent = newValue;
+        this.#likeButton.classList.add("element__like-button_type_active");
+        this.#likeCounter.textContent = newValue;
         this.hasMyLike = true;
-
     }
 
 
     //дизлайк карточки
     dislikeThisCard(newValue) {
-        this.#element.querySelector(".element__like-button").classList.remove("element__like-button_type_active");
-        this.#element.querySelector(".element__like-counter").textContent = newValue;
+        this.#likeButton.classList.remove("element__like-button_type_active");
+        this.#likeCounter.textContent = newValue;
         this.hasMyLike = false;
     }
 
@@ -84,25 +88,28 @@ export default class Card {
     generateCard() {
         this.#element = this.#getTemplate();
 
+        //ищу все необходимые элементы, для исключения дублирования поиска
+        this.#cardTitle = this.#element.querySelector(".element__title");
+        this.#image = this.#element.querySelector(".element__image");
+        this.#likeButton = this.#element.querySelector(".element__like-button");
+        this.#likeCounter = this.#element.querySelector(".element__like-counter");
+        this.#deleteButton = this.#element.querySelector(".element__trash-button");
 
-        const elementImage = this.#element.querySelector(".element__image");
-        elementImage.src = this.#link;
-        elementImage.alt = this.#name;
+        this.#image.src = this.link;
+        this.#image.alt = this.name;
 
-
-        this.#element.querySelector(".element__title").textContent = this.#name;
-        this.#element.querySelector(".element__like-counter").textContent = this.#likes.length;
-
+        this.#cardTitle.textContent = this.name;
+        this.#likeCounter.textContent = this.#likes.length;
 
         this.hasMyLike = this.#likes.some((like) => like._id === this.#myId);
 
 
         if (this.hasMyLike) {
-            this.#element.querySelector('.element__like-button').classList.add("element__like-button_type_active");
+            this.#likeButton.classList.add("element__like-button_type_active");
         }
 
-
         this.#setEventListeners(); // добавить все слушатели карточке
+
         return this.#element; // вернуть готовую карточку
     }
 }
