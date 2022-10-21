@@ -12,7 +12,6 @@ import {
     avatarForm,
 } from "../utils/constants.js"; // константы
 
-//import { createCard } from "../utils/utils.js"; // импорт универслаьной функции создания карточки
 import Card from "../components/Card"; // класс карточек
 import Section from "../components/Section.js"; // класс рендеринга
 import FormValidator from "../components/FormValidator.js"; // класс валидации
@@ -44,7 +43,10 @@ export const popupWithConfirmation = new PopupWithConfirmation(".popup_type_dele
     popupWithConfirmation.renderLoading(true);
 
     api.deleteThisCard(card.cardId)
-        .then(() => card.deleteElement())
+        .then(() => {
+            card.deleteElement();
+            popupWithConfirmation.close();
+        })
         .catch(err => console.error(err))
         .finally(() => popupWithConfirmation.renderLoading(false));
 }); // попап для удаления карточки
@@ -54,7 +56,10 @@ const popupProfile = new PopupWithForm(".popup_type_profile", (item) => {
     popupProfile.renderLoading(true);
 
     api.updateUserInfo({name: item.title, about: item.description})
-        .then(newInfo => userInfo.updateUserTextInfo({ title: newInfo.name, description: newInfo.about }))
+        .then(newInfo => {
+            userInfo.updateUserTextInfo({ title: newInfo.name, description: newInfo.about });
+            popupProfile.close();
+        })
         .catch(err => console.error(err))
         .finally(() => popupProfile.renderLoading(false));
 }); // попап для редактирования профиля
@@ -64,7 +69,10 @@ const popupSubmitCard = new PopupWithForm(".popup_type_elements", (card) => {
     popupSubmitCard.renderLoading(true);
 
     api.addNewCard(card)
-        .then(card => section.addItem(card))
+        .then(card => {
+            section.addItem(card);
+            popupSubmitCard.close();
+        })
         .catch(err => console.error(err))
         .finally(() => popupSubmitCard.renderLoading(false));
 }); // попап добавления новых мест
@@ -75,7 +83,8 @@ const popupAvatar = new PopupWithForm(".popup_type_edit-avatar", (avatar) => {
 
     api.updateUserAvatar(avatar)
         .then(newInfo => {
-            userInfo.updateUserAvatar({ avatar: newInfo.avatar })
+            userInfo.updateUserAvatar({ avatar: newInfo.avatar });
+            popupAvatar.close();
         })
         .catch(() => alert('Пожалуйста, укажите ссылку на картинку'))
         .finally(() => popupAvatar.renderLoading(false));

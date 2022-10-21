@@ -4,7 +4,7 @@ export default class PopupWithConfirmation extends Popup {
 
     #popupForm;
     #handleFormSubmit;
-    #card;
+    #item;
     #submitButton;
     #defaultText;
 
@@ -17,9 +17,9 @@ export default class PopupWithConfirmation extends Popup {
         this.#defaultText = this.#submitButton.textContent;
     }
 
-    open(card) {
+    open(item) {
         super.open();
-        this.#card = card;
+        this.#item = item;
     }
 
     setEventListeners() {
@@ -27,9 +27,7 @@ export default class PopupWithConfirmation extends Popup {
         this.popup.addEventListener("submit", (evt) => {
             evt.preventDefault();
 
-            this.#handleFormSubmit(this.#card)
-
-            this.close();
+            this.#handleFormSubmit(this.#item)
         });
     }
 
