@@ -37,7 +37,7 @@ export default class Card {
     }
 
 
-    // добавляем все слушатели карточки
+    // добавляем все слушатели карточки или удаляем кнопку удаления
     #setEventListeners() {
         this.#image.addEventListener("click", () => {
             this.#handleCardClick(this);
